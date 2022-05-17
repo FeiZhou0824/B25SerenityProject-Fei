@@ -26,6 +26,7 @@ public class SpartanAdminGetTest {
     }
 
 
+    @Disabled
     @Test
     public void getAllSpartan(){
         given()
@@ -39,6 +40,7 @@ public class SpartanAdminGetTest {
                 .and()
                 .contentType(ContentType.JSON);
     }
+
 
 
     @Test
