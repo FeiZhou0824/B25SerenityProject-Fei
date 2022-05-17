@@ -1,5 +1,6 @@
 package b25.spartan.editor;
 
+import io.cucumber.java.af.En;
 import org.junit.jupiter.api.DisplayName;
 import utilities.SpartanNewBase;
 
@@ -42,6 +43,51 @@ public class SpartanEditorPostTest extends SpartanNewBase {
                 .when()
                 .post("/spartans")
                 .then().log().all();
+
+
+        /*
+                status code is 201
+                content type is Json
+                success message is A Spartan is Born!
+                id is not null
+                name is correct
+                gender is correct
+                phone is correct
+                check location header ends with newly generated id
+         */
+
+        //status code is 201
+         Ensure.that("Status code is 201",vRes ->vRes.statusCode(201));
+
+         //content type is Json
+        Ensure.that("Content -Type is JSON", vR -> vR.contentType(ContentType.JSON));
+
+        // success message is A Spartan is Born!
+        Ensure.that("success message is A Spartan is Born!", vR-> vR.body("success", is("A Spartan is Born!")));
+
+        //id is not null
+        Ensure.that("ID is not null", vR-> vR.body("data.id", notNullValue()));
+
+        // name is correct
+        Ensure.that("Name is correct", vR->vR.body("data.name",is(randomSpartanMap.get("name"))));
+
+        //gender is correct
+        Ensure.that("Gender is correct", vR ->vR.body("data.gender",is(randomSpartanMap.get("gender"))));
+
+        //phone is correct
+        Ensure.that("Phone is correct", vR ->vR.body("data.phone",is(randomSpartanMap.get("phone"))));
+
+        //check location header ends with newly generated id
+        String id = lastResponse().jsonPath().getString("data.id");
+
+        Ensure.that("check location header ends with newly generated id",
+                     vR-> vR.header("Location",endsWith(id)));
+
+
+
+
+
+
 
     }
 
