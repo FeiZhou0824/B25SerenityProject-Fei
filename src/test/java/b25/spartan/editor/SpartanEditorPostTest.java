@@ -21,7 +21,7 @@ import java.util.Map;
 import static net.serenitybdd.rest.SerenityRest.given;
 import static net.serenitybdd.rest.SerenityRest.lastResponse;
 import static org.hamcrest.Matchers.*;
-
+@Disabled
 @SerenityTest
 public class SpartanEditorPostTest extends SpartanNewBase {
 

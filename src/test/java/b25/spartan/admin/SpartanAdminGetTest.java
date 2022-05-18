@@ -15,7 +15,7 @@ import static net.serenitybdd.rest.SerenityRest.lastResponse;
 import static org.hamcrest.Matchers.*;
 
 
-
+@Disabled
 @SerenityTest
 public class SpartanAdminGetTest {
 
